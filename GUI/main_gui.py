@@ -101,11 +101,14 @@ class MainWindow(QMainWindow):
             try:
                 self.log_area.clear()
                 processor = QRCodeProcessor(self.token, self.temp_dir)
-                signals = self.thread_manager.start_worker(processor.process_qrcodes)
                 
-                signals.update.connect(self.update_status)
-                signals.finished.connect(self.processing_finished)
-                signals.error.connect(self.handle_processing_error)
+                # 直接连接信号到处理方法
+                processor.update_signal.connect(self.update_status)
+                processor.finished_signal.connect(self.processing_finished)
+                processor.error_signal.connect(self.handle_processing_error)
+                
+                # 使用 ThreadManager 启动处理
+                self.thread_manager.start_worker(processor.process_qrcodes)
                 
                 self.auto_fill_button.setEnabled(False)
                 

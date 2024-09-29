@@ -15,10 +15,10 @@ class Worker(QRunnable):
 
     def run(self):
         try:
-            result = self.fn(*self.args, **self.kwargs)
+            self.fn(*self.args, **self.kwargs)
         except Exception as e:
             self.signals.error.emit(str(e))
-        else:
+        finally:
             self.signals.finished.emit()
 
 class ThreadManager:
