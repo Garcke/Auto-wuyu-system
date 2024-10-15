@@ -17,11 +17,15 @@
 /项目根目录
 │
 ├── GUI/
+│   └── login_gui.py # 登录界面代码
 │   └── main_gui.py  # 主界面代码
 │
 ├── main.py          # QRCodeProcessor类的实现
 ├── Service/
 │   └── ThreadManager.py  # 线程管理类
+│   └── QRCodeHandler.py  # 二维码处理类
+│   └── AutoLogin.py  # 自动登录类
+│   └── EvaluationSubmitter
 └── unrar_win/
     └── UnRAR.exe   # 解压RAR文件的工具
 ```
